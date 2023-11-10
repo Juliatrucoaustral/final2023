@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarritoService } from '../core/services/carrito.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public carritoService: CarritoService) {}
+  
+    cambiarCantidad(cantidad:number, idProducto:number){
+      console.log(cantidad,idProducto)
+      this.carritoService.modificarCantidadProducto(idProducto,cantidad);
+    }
 
 }
+

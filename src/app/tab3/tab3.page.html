@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Carrito
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,42 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Carrito</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card *ngIf="carritoService.carrito.length">
+    <ion-card-header>
+      <ion-card-title>Productos</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of carritoService.carrito">
+          <ion-thumbnail slot="start">
+            <img alt="{{item.producto.nombre}}" src="{{item.producto.imagen}}" />
+          </ion-thumbnail>
+          <ion-label>{{item.producto.nombre}} - {{item.producto.precio}} - {{item.cantidad}}</ion-label>
+          <ion-button fill="clear" (click)="carritoService.eliminarProducto(item.producto.id)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+          <app-contador-cantidad [cantidadInicial]="item.cantidad" (cantidadCambiada)="cambiarCantidad($event, item.producto.id)"></app-contador-cantidad>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title *ngIf="!carritoService.carrito.length">
+        Tu carrito está vacío, <a [routerLink]="['/tabs/tab1']">agregá algun producto</a>
+      </ion-card-title>
+      <ng-container *ngIf="carritoService.carrito.length">
+      <ion-card-title>
+        Total: ${{carritoService.totalCarrito}}
+      </ion-card-title>
+      <ion-button fill="clear" href="{{carritoService.generarMensaje()}}" target="_blank">Comprar</ion-button>
+      <ion-button fill="clear" (click)="carritoService.limpiarCarrito()">Limpiar carrito</ion-button>
+    </ng-container>
+</ion-card-content>
+</ion-card>
 </ion-content>

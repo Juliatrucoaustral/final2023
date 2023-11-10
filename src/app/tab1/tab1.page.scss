@@ -1,0 +1,20 @@
+h1{
+    //background-color: red;
+}
+
+
+#categorias-container{
+    margin-top: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    a{
+    margin: 10px 10px;
+    padding: 60px 20px;
+    border-radius: 10px;
+    text-align: center;
+    //background-color: red;
+    color: white;
+    background-size: cover;
+    background-position: center;
+}
+}

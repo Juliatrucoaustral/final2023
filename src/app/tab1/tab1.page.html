@@ -1,17 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Menu
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <section id="categorias-container">
+    <a *ngFor="let item of categorias"
+    [ngStyle]="{'background-image': 'url('+item.imgUrl+')'}"
+    [routerLink] = "['/categoria', item.id]"
+    > {{item.nombre}}
+    </a>
+   
+  
+  </section>
+
+
+
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  
 </ion-content>
